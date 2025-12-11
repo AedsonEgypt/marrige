@@ -6,17 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     public function up(): void
     {
-        Schema::table('presentes', function (Blueprint $table) {
-            $table->boolean('vlr_simbolico')->default(false)->after('valor');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('imagem')->nullable();
         });
     }
 
     public function down(): void
     {
-        Schema::table('presentes', function ($table) {
-            $table->dropColumn('vlr_simbolico');
-        });
+        Schema::dropColumns('imagem');
     }
 };

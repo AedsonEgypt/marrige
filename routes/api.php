@@ -69,9 +69,8 @@ Route::post('/create-user',         function(Request $request) {
     $user = new User();
     $user->name             = $data['name'];
     $user->telefone         = $data['telefone'];
-    $user->flg_aprovado     = $data['flgAprovado'] ? 'SIM' : 'NAO';
     $user->imagem           = time() . '_' . explode(' ', $data['name'])[0] . '_' . explode(' ', $data['name'])[1];
-    $user->role_id          = 3;
+    $user->role_id          = $data['role_id'];
     if (empty($data['id'])) {
         $user->created_at   = Helper::toMySQL('now', TRUE);
     }
