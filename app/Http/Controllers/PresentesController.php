@@ -98,6 +98,7 @@ class PresentesController extends Controller {
             $registros = DB::table('presentes')->count();
         }
 
+        $data['chaPanela'] = $data['chaPanela'] ?? 0;
         $data['vlrSimbolico'] = $data['vlrSimbolico'] ?? 0;
 
         $record = new Presente();
