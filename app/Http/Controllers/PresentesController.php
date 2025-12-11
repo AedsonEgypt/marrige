@@ -105,11 +105,11 @@ class PresentesController extends Controller {
         $record->nome               = $data['nome_presente'];
         $record->valor              = $data['valor']        ?? 0;
         $record->level              = $data['categoria'];
-        $record->descricao          = $data['descricao']    ?? null;
+        $record->descricao          = $data['descricao']    ?? '';
         $record->name_img           = $imageName;
         $record->path_img           = $uploadImg;
-        $record->img_url            = $data['link']         ?? null;
-        $record->tags               = $data['tags']         ?? null;
+        $record->img_url            = $data['link']         ?? '';
+        $record->tags               = $data['tags']         ?? '';
         $record->vlr_simbolico      = $data['vlrSimbolico'] ? 1 : 0;
         $record->cha_panela         = $data['chaPanela']    ? 1 : 0;
         $record->prioridade         = $data['prioridade']   ?? $registros + 1;
