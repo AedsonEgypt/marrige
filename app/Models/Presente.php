@@ -133,6 +133,9 @@ class Presente extends Model
     }
 
     public function setCota() {
+        // Cliente solicitou a retirada de cotas;
+        return;
+        
         $valorPendente = $this->valor - $this->vlr_presenteado - $this->vlr_processando;
 
         if ($valorPendente < 0.3) return;
