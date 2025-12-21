@@ -35,6 +35,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     Route::any('/padrinhos', [PadrinhosController::class, 'handle']);
+    Route::get('/padrinhos/cores', [PadrinhosController::class, 'getCores']);
+    Route::get('/padrinhos/cores/selecionar', [PadrinhosController::class, 'selecionarCor']);
+    Route::get('/padrinhos/cores/deselecionar', [PadrinhosController::class, 'desselecionarCor']);
 });
 
 Route::any('/presentes-cha-panela',                         [PresentesController::class, 'listAllChaPanela']);
