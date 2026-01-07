@@ -11,7 +11,7 @@ use MercadoPago\MercadoPagoConfig;
 
 class MercadoPagoApiService extends ApiService {
 
-    protected $token = 'APP_USR-8480088043089622-051113-6de018eb795661ea415c36811daac4f7-765193147';
+    protected $token = 'APP_USR-1761738924614478-010315-33619b28bcd63ac367e59c5f3d110e6e-1601141998';
     protected $url = 'https://api.mercadopago.com/v1';
 
     private $notificationUrl = 'https://marrige-back-a7da80137ead.herokuapp.com/api/webhook_payment';
@@ -95,7 +95,7 @@ class MercadoPagoApiService extends ApiService {
             "payer" => $payer,
             "payment_methods" => $paymentMethods,
             "back_urls" => $backUrls,
-            "statement_descriptor" => "CASA_EDSONSWELEN",
+            "statement_descriptor" => "CASA_RUANKAWANE",
             "external_reference" => $presente->id,
             "expires" => true,
             "notification_url" => $this->notificationUrl,
