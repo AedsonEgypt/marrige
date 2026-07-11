@@ -17,7 +17,7 @@ consegue ver:
 
 1. Crie um novo projeto no Railway e conecte o repositório `marrige` (backend) do GitHub.
 2. Railway vai detectar o `composer.json` e usar o builder Nixpacks automaticamente (configurado em `railway.json`). O Nixpacks monta seu próprio servidor (nginx + php-fpm) apontando pra `public/` — **não** defina um `startCommand` customizado nem adicione um `Procfile`, isso substitui o servidor que o Nixpacks já prepara e derruba o healthcheck.
-3. As migrations rodam sozinhas antes de cada deploy via `deploy.preDeployCommand` no `railway.json` (`php artisan migrate --force`), e o healthcheck está configurado em `/api`.
+3. As migrations rodam sozinhas antes de cada deploy via `deploy.preDeployCommand` no `railway.json` (`php artisan migrate --force`), e o healthcheck está configurado na raiz `/` (a rota `/api` dentro de `routes/api.php` vira `/api/api` de verdade, porque o Laravel já prefixa esse arquivo com `/api` — por isso o healthcheck usa `/`, que não tem esse prefixo).
 
 ## 2. Variáveis de ambiente a configurar no Railway
 
@@ -43,7 +43,7 @@ Copie do `.env.example` e preencha com valores reais (novos, já rotacionados):
 ## 3. Primeiro deploy
 
 1. Suba as variáveis acima no Railway e faça o deploy.
-2. Depois que o app subir, confira `https://SEU-APP.up.railway.app/api` — deve responder `{"status":"success","data":"REST API Funcionando!"}`.
+2. Depois que o app subir, confira `https://SEU-APP.up.railway.app/` (healthcheck) e `https://SEU-APP.up.railway.app/api/login` (deve responder erro de "Convidado não encontrado" pra um telefone qualquer via POST — sinal de que a API e o banco estão respondendo).
 3. Ajuste `APP_URL` para a URL real gerada pelo Railway (e redeploy) se ainda não tiver colocado certo.
 4. Se usar domínio próprio, adicione-o no Railway e atualize `APP_URL` e `CORS_ALLOWED_ORIGINS` de novo.
 
