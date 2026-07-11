@@ -11,10 +11,10 @@ use MercadoPago\MercadoPagoConfig;
 
 class MercadoPagoApiService extends ApiService {
 
-    protected $token = 'APP_USR-1761738924614478-010315-33619b28bcd63ac367e59c5f3d110e6e-1601141998';
+    protected $token = '';
     protected $url = 'https://api.mercadopago.com/v1';
 
-    private $notificationUrl = 'https://marrige-back-a7da80137ead.herokuapp.com/api/webhook_payment';
+    private $notificationUrl;
 
     CONST CANCELADO = 'cancelled';
     CONST APROVADO = 'approved';
@@ -24,7 +24,10 @@ class MercadoPagoApiService extends ApiService {
     CONST PAGAMENTO_EM_PROCESSADO = "pending_contingency";
     CONST EM_ANALISE = "pending_review_manual";
 
-    public function __construct() {}
+    public function __construct() {
+        $this->token = config('services.mercadopago.access_token');
+        $this->notificationUrl = config('services.mercadopago.notification_url');
+    }
 
     protected function auth() {
         $this->setAuthorization();
